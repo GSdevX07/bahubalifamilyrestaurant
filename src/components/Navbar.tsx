@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Instagram } from "lucide-react";
-import logo from "@/assets/bahubali-logo.png";
+import logo from "@/assets/bahubali-logo-header.png";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
