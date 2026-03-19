@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 15% 4%;
+    --foreground: 42 20% 90%;
+    --card: 30 15% 8%;
+    --card-foreground: 42 20% 90%;
+    --popover: 30 15% 8%;
+    --popover-foreground: 42 20% 90%;
+    --primary: 42 52% 55%;
+    --primary-foreground: 30 15% 4%;
+    --secondary: 30 15% 12%;
+    --secondary-foreground: 42 20% 90%;
+    --muted: 30 10% 15%;
+    --muted-foreground: 42 10% 60%;
+    --accent: 0 60% 25%;
+    --accent-foreground: 42 20% 90%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 42 20% 15%;
+    --input: 42 20% 15%;
+    --ring: 42 52% 55%;
+    --radius: 0.75rem;
+
+    --gold-light: 42 60% 65%;
+    --gold-dark: 42 40% 35%;
+    --obsidian: 30 15% 4%;
+    --charcoal: 30 15% 8%;
+    --oxblood: 0 60% 25%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel', serif;
+  }
+}
+
+@layer utilities {
+  .font-cinzel {
+    font-family: 'Cinzel', serif;
+  }
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+  .text-gold-gradient {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(to bottom, hsl(42 60% 65%), hsl(42 40% 35%));
+  }
+  .bg-gold-gradient {
+    background-image: linear-gradient(to right, hsl(42 52% 55%), hsl(42 40% 35%));
+  }
+  .bg-oxblood {
+    background-color: hsl(0 60% 25%);
+  }
+  .shadow-gold {
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+  }
+  .shadow-royal {
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.8);
+  }
+  .border-gold {
+    border-color: rgba(197, 160, 89, 0.3);
+  }
+  .border-gold-bright {
+    border-color: rgba(197, 160, 89, 0.6);
+  }
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.2), inset 0 1px 0 0 rgba(197, 160, 89, 0.1);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(30 15% 4%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(42 52% 35%);
+  border-radius: 3px;
+}
+
+/* Hide scrollbar for category tabs */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
