@@ -2,10 +2,12 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Crown } from "lucide-react";
 import { menuData } from "@/data/menuData";
+import { useCart } from "@/cart/CartContext";
 
 const MenuSection = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { getItemQty, addToCart, incrementItem, decrementItem } = useCart();
 
   return (
     <section id="menu" className="py-20 px-4">
@@ -60,9 +62,42 @@ const MenuSection = () => {
                     {item.name}
                   </span>
                 </div>
-                <span className="font-montserrat text-sm text-primary tabular-nums ml-4 shrink-0">
-                  Rs. {item.price}
-                </span>
+                <div className="flex items-baseline gap-4 ml-4 shrink-0">
+                  <span className="font-montserrat text-sm text-primary tabular-nums">
+                    Rs. {item.price}
+                  </span>
+                  {getItemQty(item.name) === 0 ? (
+                    <button
+                      type="button"
+                    onClick={() => addToCart(item.name, parseInt(item.price, 10))}
+                      className="bg-accent text-foreground font-montserrat font-semibold px-3 py-1.5 rounded-lg tracking-wider text-[11px] uppercase transition-all duration-300 hover:shadow-[0_0_20px_rgba(102,16,16,0.4)] hover:scale-105 border border-accent/50"
+                    >
+                      Add to Cart
+                    </button>
+                  ) : (
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => decrementItem(item.name)}
+                        className="bg-accent text-foreground font-montserrat font-semibold px-2 py-1 rounded-lg tracking-wider text-[14px] uppercase transition-all duration-300 hover:shadow-[0_0_20px_rgba(102,16,16,0.4)] hover:scale-105 border border-accent/50"
+                        aria-label={`Decrease quantity for ${item.name}`}
+                      >
+                        -
+                      </button>
+                      <span className="font-montserrat text-sm text-primary tabular-nums min-w-[20px] text-center">
+                        {getItemQty(item.name)}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => incrementItem(item.name)}
+                        className="bg-accent text-foreground font-montserrat font-semibold px-2 py-1 rounded-lg tracking-wider text-[14px] uppercase transition-all duration-300 hover:shadow-[0_0_20px_rgba(102,16,16,0.4)] hover:scale-105 border border-accent/50"
+                        aria-label={`Increase quantity for ${item.name}`}
+                      >
+                        +
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </motion.div>

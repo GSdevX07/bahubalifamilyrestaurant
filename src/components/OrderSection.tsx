@@ -1,6 +1,36 @@
 import { motion } from "framer-motion";
+import { useCart } from "@/cart/CartContext";
 
 const OrderSection = () => {
+  const { isCartEmpty, getWhatsAppOrderUrl, clearCart } = useCart();
+
+  const handleZomatoOrder = () => {
+    if (isCartEmpty) {
+      window.alert("Cart is empty");
+      return;
+    }
+    window.open("https://www.zomato.com/bangalore/bahubali-family-restaurant-yelahanka-bangalore/order", "_blank");
+  };
+
+  const handleSwiggyOrder = () => {
+    if (isCartEmpty) {
+      window.alert("Cart is empty");
+      return;
+    }
+    window.open("https://www.swiggy.com/city/bangalore/bahubali-family-restauant-yelahanka-rest1280002", "_blank");
+  };
+
+  const handleWhatsAppOrder = () => {
+    if (isCartEmpty) {
+      window.alert("Cart is empty");
+      return;
+    }
+    const url = getWhatsAppOrderUrl();
+    window.open(url, "_blank");
+    // Optional improvement: clear cart after WhatsApp click
+    clearCart();
+  };
+
   return (
     <section className="py-20 px-4 bg-background">
       <div className="max-w-3xl mx-auto text-center">
@@ -26,30 +56,27 @@ const OrderSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <a
-            href="https://www.zomato.com/bangalore/bahubali-family-restaurant-yelahanka-bangalore/order"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
             className="w-full sm:w-auto bg-accent text-foreground font-montserrat font-semibold px-8 py-3.5 rounded-lg tracking-wider text-sm uppercase transition-all duration-300 hover:shadow-[0_0_20px_rgba(102,16,16,0.4)] hover:scale-105 border border-accent/50"
+            onClick={handleZomatoOrder}
           >
             Order on Zomato
-          </a>
-          <a
-            href="https://www.swiggy.com/city/bangalore/bahubali-family-restauant-yelahanka-rest1280002"
-            target="_blank"
-            rel="noopener noreferrer"
+          </button>
+          <button
+            type="button"
             className="w-full sm:w-auto bg-[hsl(30,80%,30%)] text-foreground font-montserrat font-semibold px-8 py-3.5 rounded-lg tracking-wider text-sm uppercase transition-all duration-300 hover:shadow-[0_0_20px_rgba(180,100,20,0.3)] hover:scale-105 border border-[hsl(30,60%,40%)]/50"
+            onClick={handleSwiggyOrder}
           >
             Order on Swiggy
-          </a>
-          <a
-            href="https://wa.me/919035859999?text=Hello%20Bahubali%20Restaurant,%20I%20want%20to%20order%20something"
-            target="_blank"
-            rel="noopener noreferrer"
+          </button>
+          <button
+            type="button"
             className="w-full sm:w-auto bg-[hsl(140,40%,20%)] text-foreground font-montserrat font-semibold px-8 py-3.5 rounded-lg tracking-wider text-sm uppercase transition-all duration-300 hover:shadow-[0_0_20px_rgba(30,100,50,0.3)] hover:scale-105 border border-[hsl(140,30%,30%)]/50"
+            onClick={handleWhatsAppOrder}
           >
             Order via WhatsApp
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>
