@@ -75,9 +75,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const buildWhatsAppText = () => {
     const lines = cart.map((item) => `${item.name} - Qty: ${item.qty}`);
-    const total = `Total: ₹ ${Math.round(totalPrice)}`;
-    // Keep the exact format requested by the user.
-    return `Order from ${RESTAURANT_NAME}:\n\n${lines.join("\n")}\n\n${total}`;
+    // WhatsApp message should include items only (total is shown in the cart UI).
+    return `Order from ${RESTAURANT_NAME}:\n\n${lines.join("\n")}`;
   };
 
   const getWhatsAppOrderUrl = () => {

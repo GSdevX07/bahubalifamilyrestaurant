@@ -232,10 +232,9 @@ const Navbar = () => {
               <div className="px-4 py-4 flex flex-col gap-3">
                 <button
                   type="button"
-                  disabled={isCartEmpty}
                   onClick={() => {
                     if (isCartEmpty) {
-                      window.alert("Cart is empty");
+                      window.alert("Your cart is empty. Go to Dashboard and Menu, then add items to cart.");
                       return;
                     }
                     const url = getWhatsAppOrderUrl();
@@ -250,12 +249,7 @@ const Navbar = () => {
 
                 <button
                   type="button"
-                  disabled={isCartEmpty}
                   onClick={() => {
-                    if (isCartEmpty) {
-                      window.alert("Cart is empty");
-                      return;
-                    }
                     window.open(
                       "https://www.zomato.com/bangalore/bahubali-family-restaurant-yelahanka-bangalore/order",
                       "_blank",
@@ -269,12 +263,7 @@ const Navbar = () => {
 
                 <button
                   type="button"
-                  disabled={isCartEmpty}
                   onClick={() => {
-                    if (isCartEmpty) {
-                      window.alert("Cart is empty");
-                      return;
-                    }
                     window.open(
                       "https://www.swiggy.com/city/bangalore/bahubali-family-restauant-yelahanka-rest1280002",
                       "_blank",
